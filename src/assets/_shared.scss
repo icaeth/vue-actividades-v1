@@ -1,0 +1,16 @@
+// colors
+
+$red: rgb(185, 110, 110);
+$blue: rgb(171, 171, 209);
+
+//mixins
+
+@mixin boton-azul {
+    background-color: blue;
+    color: white;
+}
+
+@mixin boton-rojo {
+    background-color: red;
+    color: white;
+}
