@@ -35,32 +35,32 @@
 </template>
 
 <script>
-  export default {
-    data() {
-      return {};
+export default {
+  data() {
+    return {};
+  },
+  props: ["value"],
+  methods: {
+    updateValue(value) {
+      this.$emit("input", value);
     },
-    props: ["value"],
-    methods: {
-      updateValue(value) {
-        this.$emit("input", value);
-      },
-      msgHijo(value) {
-        this.$emit("input2", value);
-      },
-      borrarHijo(value) {
-        this.$emit("input", value);
-      },
-      otroMsg(value) {
-        this.$emit("update:otroMsg", value);
-      },
+    msgHijo(value) {
+      this.$emit("input2", value);
     },
-  };
+    borrarHijo(value) {
+      this.$emit("input", value);
+    },
+    otroMsg(value) {
+      this.$emit("update:otroMsg", value);
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>
-  .children {
-    background-color: lightcoral;
-    margin: 0 auto;
-    max-width: 600px;
-  }
+.children {
+  background-color: lightcoral;
+  margin: 0 auto;
+  max-width: 600px;
+}
 </style>

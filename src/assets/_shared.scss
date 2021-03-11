@@ -14,3 +14,11 @@ $blue: rgb(171, 171, 209);
     background-color: red;
     color: white;
 }
+
+@mixin children {
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    top: 60px;
+    padding: 0 5px 5px;
+}

@@ -37,41 +37,40 @@
 </template>
 
 <script>
-  import Hijo from "@/components/Hijo.vue";
+import Hijo from "@/components/Hijo.vue";
 
-  export default {
-    name: "Home",
-    components: { Hijo },
+export default {
+  name: "Home",
+  components: { Hijo },
 
-    name: "App",
-    data: () => ({
-      value: "",
-      msgHijo: "",
-      otroMsg: "",
-    }),
-    methods: {
-      updateText() {
-        this.value = "";
-      },
-      updateHijo(value) {
-        console.log(value);
-        this.msgHijo = value;
-      },
+  data: () => ({
+    value: "",
+    msgHijo: "",
+    otroMsg: ""
+  }),
+  methods: {
+    updateText() {
+      this.value = "";
     },
+    updateHijo(value) {
+      console.log(value);
+      this.msgHijo = value;
+    }
+  },
 
-    props: {},
-  };
+  props: {}
+};
 </script>
 
 <style lang="scss" scoped>
-  .padre {
-    background-color: lightgreen;
-    margin: 0 auto;
-    max-width: 600px;
-  }
-  .message {
-    color: rgb(24, 69, 192);
-    font-weight: 700;
-    height: 1rem;
-  }
+.padre {
+  background-color: lightgreen;
+  margin: 0 auto;
+  max-width: 600px;
+}
+.message {
+  color: rgb(24, 69, 192);
+  font-weight: 700;
+  height: 1rem;
+}
 </style>
