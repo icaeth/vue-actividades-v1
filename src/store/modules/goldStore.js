@@ -106,7 +106,7 @@ export default {
       }
     },
     setScore({state, commit}){
-      axios.post("https://my-json-server.typicode.com/icaeth/vue-actividades-v1/scores", {pepe:'globos', score: 100})
+      axios.post("https://my-json-server.typicode.com/icaeth/vue-actividades-v1/scores", {"pepe":'globos', "score": 100})
     }
   },
   getters: {

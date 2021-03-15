@@ -102,6 +102,6 @@
     }
   ],
   "users": [
-
+    {"pepe": "gato", "score": 50}
   ]
 }
