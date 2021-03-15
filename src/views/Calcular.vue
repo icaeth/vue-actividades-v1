@@ -1,16 +1,48 @@
 <template>
   <div>
     <h1>Ingrese dos números y la operación</h1>
-    <input v-model.number="a" type="number" name="a" id="" />
-    <select v-model="operator" name="operator" id="">
-      <option value="+">+</option>
-      <option value="-">-</option>
-      <option value="*">*</option>
-      <option value="/">/</option>
+    <input
+      id=""
+      v-model.number="a"
+      type="number"
+      name="a"
+    >
+    <select
+      id=""
+      v-model="operator"
+      name="operator"
+    >
+      <option value="+">
+        +
+      </option>
+      <option value="-">
+        -
+      </option>
+      <option value="*">
+        *
+      </option>
+      <option value="/">
+        /
+      </option>
     </select>
-    <input v-model.number="b" type="number" name="b" id="" />
-    <button class="boton-azul" @click="operacion">Calcular</button>
-    <button class="boton-rojo" @click="borrar">Borrar</button>
+    <input
+      id=""
+      v-model.number="b"
+      type="number"
+      name="b"
+    >
+    <button
+      class="boton-azul"
+      @click="operacion"
+    >
+      Calcular
+    </button>
+    <button
+      class="boton-rojo"
+      @click="borrar"
+    >
+      Borrar
+    </button>
     <div>
       <h2>
         Resultado: {{ a }} {{ operator }} {{ b }} {{ igual }} {{ resultado }}

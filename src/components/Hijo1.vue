@@ -3,9 +3,13 @@
     <div class="child">
       <h2>Hijo 1</h2>
       <p>Score: {{ score }}</p>
-      <button @click="add()">Increment</button>
+      <button @click="add()">
+        Increment
+      </button>
       <p>LocalScore: {{ localScore }}</p>
-      <button @click="addLocal()">Local + Store</button>
+      <button @click="addLocal()">
+        Local + Store
+      </button>
     </div>
   </div>
 </template>
@@ -25,7 +29,7 @@ export default {
   },
   methods: {
     ...mapMutations({
-      add: "increment"
+      add: "SET_INCREMENT"
     }),
     addLocal: function() {
       return (this.localScore = this.localScore + this.score);

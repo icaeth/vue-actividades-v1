@@ -1,26 +1,35 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import pokeStore from "./modules/pokeStore";
+import goldStore from "./modules/goldStore";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
     score: 0,
-    msg: false
+    msg: false,
+    students: [{}]
   },
   mutations: {
-    increment(state) {
+    SET_INCREMENT(state) {
       state.score++;
     },
-    decrement(state) {
+    SET_DECREMENT(state) {
       state.score--;
     },
-    customIncrement(state, payload) {
+    SET_CUSTOM_INCREMENT(state, payload) {
       state.score = payload;
+    },
+    ADD_STUDENT(state, payload) {
+      state.students.push(payload);
     }
   },
   actions: {},
-  modules: {},
+  modules: {
+    pokeStore,
+    goldStore
+  },
   getters: {
     over9: state => {
       if (state.score > 9000) {

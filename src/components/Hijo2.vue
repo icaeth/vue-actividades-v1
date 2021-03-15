@@ -3,9 +3,18 @@
     <div class="child">
       <h2>Hijo 2</h2>
       <p>Score: {{ score }}</p>
-      <button @click="rest()">Decrement</button>
-      <input v-model="inputValue" type="number" name="" id="inputNumber" />
-      <button @click="addCustom(inputValue)">Add to Store</button>
+      <button @click="rest()">
+        Decrement
+      </button>
+      <input
+        id="inputNumber"
+        v-model.number="inputValue"
+        type="number"
+        name=""
+      >
+      <button @click="addCustom(inputValue)">
+        Add to Store
+      </button>
     </div>
   </div>
 </template>
@@ -25,10 +34,10 @@ export default {
   },
   methods: {
     ...mapMutations({
-      rest: "decrement"
+      rest: "SET_DECREMENT"
     }),
     addCustom: function(value) {
-      this.$store.commit("customIncrement", parseInt(value));
+      this.$store.commit("SET_CUSTOM_INCREMENT", value);
     }
   }
 };

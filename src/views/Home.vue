@@ -3,7 +3,10 @@
     <div class="padre">
       <h1>Soy el componente Padre</h1>
       <label for="">Soy un input en el componente padre: </label>
-      <input type="text" v-model="value" />
+      <input
+        v-model="value"
+        type="text"
+      >
       <div>
         <button @click="updateText">
           Soy un botón para borrar en padre
@@ -12,27 +15,25 @@
 
       <div>
         <p>Soy el valor en padre, enlazado con v-model</p>
-        <span
-          >Acá está el valor con v-model:
-          <p class="message">{{ value }}</p></span
-        >
+        <span>Acá está el valor con v-model:
+          <p class="message">{{ value }}</p></span>
       </div>
       <div>
         <p>Soy el valor en padre, me transmito con emit</p>
-        <span
-          >Acá está el valor con emit:
-          <p class="message">{{ msgHijo }}</p></span
-        >
+        <span>Acá está el valor con emit:
+          <p class="message">{{ msgHijo }}</p></span>
       </div>
       <div>
         <p>Soy el valor en padre, me transmito con .sync</p>
-        <span
-          >Acá está el valor con .sync:
-          <p class="message">{{ otroMsg }}</p></span
-        >
+        <span>Acá está el valor con .sync:
+          <p class="message">{{ otroMsg }}</p></span>
       </div>
     </div>
-    <Hijo :otroMsg.sync="otroMsg" v-model="value" @input2="updateHijo" />
+    <Hijo
+      v-model="value"
+      :otro-msg.sync="otroMsg"
+      @input2="updateHijo"
+    />
   </div>
 </template>
 
@@ -42,6 +43,8 @@ import Hijo from "@/components/Hijo.vue";
 export default {
   name: "Home",
   components: { Hijo },
+
+  props: {},
 
   data: () => ({
     value: "",
@@ -56,9 +59,7 @@ export default {
       console.log(value);
       this.msgHijo = value;
     }
-  },
-
-  props: {}
+  }
 };
 </script>
 

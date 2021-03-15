@@ -6,15 +6,22 @@
       <h1>Score: {{ count }}</h1>
     </div>
     <div class="incrementar">
-      <button @click="incrementar">Incrementar</button>
-      <button @click="decrementar">Decrementar</button>
+      <button @click="incrementar">
+        Incrementar
+      </button>
+      <button @click="decrementar">
+        Decrementar
+      </button>
       <transition name="fade">
-        <div v-if="storeMsg" class="vegeta">
+        <div
+          v-if="storeMsg"
+          class="vegeta"
+        >
           <img
             src="https://media.tenor.com/images/f1d0693271bdf3259481a1e54d184673/tenor.gif"
             alt=""
             srcset=""
-          />
+          >
         </div>
       </transition>
     </div>
@@ -25,6 +32,11 @@
 import Hijo1 from "../components/Hijo1.vue";
 import Hijo2 from "../components/Hijo2.vue";
 export default {
+
+  components: {
+    Hijo1,
+    Hijo2
+  },
   data() {
     return {};
   },
@@ -38,15 +50,11 @@ export default {
   },
   methods: {
     incrementar() {
-      this.$store.commit("increment");
+      this.$store.commit("SET_INCREMENT");
     },
     decrementar() {
-      this.$store.commit("decrement");
+      this.$store.commit("SET_DECREMENT");
     }
-  },
-  components: {
-    Hijo1,
-    Hijo2
   }
 };
 </script>

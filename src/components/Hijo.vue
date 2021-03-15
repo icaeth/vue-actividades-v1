@@ -13,7 +13,7 @@
       type="text"
       :value="value"
       @input="updateValue($event.target.value)"
-    />
+    >
 
     <div>
       <label for="">Transmito mensajes con emit: </label>
@@ -21,7 +21,7 @@
         type="text"
         :msgHijo="msgHijo"
         @input="msgHijo($event.target.value)"
-      />
+      >
     </div>
     <div>
       <label for="">Transmito mensajes con sync:</label>
@@ -29,17 +29,22 @@
         type="text"
         :otroMsg="otroMsg"
         @input="otroMsg($event.target.value)"
-      />
+      >
     </div>
   </div>
 </template>
 
 <script>
 export default {
+  props: {
+    value: {
+      type: String,
+      default: ""
+    },
+  },
   data() {
     return {};
   },
-  props: ["value"],
   methods: {
     updateValue(value) {
       this.$emit("input", value);

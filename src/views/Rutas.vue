@@ -1,19 +1,25 @@
 <template>
   <div>
     <h1>Ejemplo de Rutas</h1>
-    <div class="link" v-for="ruta in rutas" :key="ruta.id">
+    <div
+      v-for="ruta in rutas"
+      :key="ruta.id"
+      class="link"
+    >
       <router-link :to="{ path: `${ruta.id}` }">
-        Router Link {{ ruta.id }}</router-link
-      >
+        Router Link {{ ruta.id }}
+      </router-link>
     </div>
     <div
       class="boton"
-      :style="{ backgroundColor: rutas[this.$route.params.id].color }"
+      :style="{ backgroundColor: rutas[$route.params.id].color }"
     >
-      Hola desde ruta {{ rutas[this.$route.params.id].id }}
+      Hola desde ruta {{ rutas[$route.params.id].id }}
     </div>
-    <label for="colorPicker">Elija un color</label
-    ><input id="colorPicker" type="color" /><button
+    <label for="colorPicker">Elija un color</label><input
+      id="colorPicker"
+      type="color"
+    ><button
       @click="addRoute(colorPicker.value)"
     >
       Agregar Ruta

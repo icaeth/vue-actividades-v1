@@ -26,6 +26,30 @@ const routes = [
     path: "/vuex",
     name: "Vuex",
     component: () => import(/* webpackChunkName: "vuex" */ "../views/Vuex.vue")
+  },
+  {
+    path: "/filtros",
+    name: "Filtros",
+    component: () =>
+      import(/* webpackChunkName: "vuex" */ "../views/Filtros.vue")
+  },
+  {
+    path: "/pokevuex",
+    name: "PokeVuex",
+    component: () =>
+      import(/* webpackChunkName: "pokevuex" */ "../views/PokeVuex.vue")
+  },
+  {
+    path: "/buscadorGold",
+    name: "BuscadorGold",
+    component: () =>
+      import(/* webpackChunkName: "pokevuex" */ "../views/BuscadorGold.vue")
+  },
+  {
+    path: "/mutaciones",
+    name: "Mutaciones",
+    component: () =>
+      import(/* webpackChunkName: "pokevuex" */ "../views/Mutaciones.vue")
   }
 ];
 
