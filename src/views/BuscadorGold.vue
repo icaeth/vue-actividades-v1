@@ -64,7 +64,7 @@ export default {
   },
   data() {
     return {};
-  },
+  },  
   computed: {
     ...mapState("goldStore", [
       "currentGold",
@@ -83,11 +83,15 @@ export default {
     ]),
     ...mapGetters([])
   },
+  mounted(){
+    this.$store.dispatch("goldStore/getLocations");
+    this.$store.dispatch("goldStore/setScore");
+  },
   methods: {
     //also supports payload `this.nameOfAction(amount)`
     ...mapActions([
       "goldStore",
-      ["farmClick", "caveClick", "houseClick", "casinoClick"]
+      ["farmClick", "caveClick", "houseClick", "casinoClick", "getLocations", "setScore"]
     ]),
     ...mapMutations(["nameOfMutation"]),
     handleClick(value) {
@@ -149,7 +153,7 @@ export default {
           break;
       }
     }
-  },  
+  },      
 };
 </script>
 

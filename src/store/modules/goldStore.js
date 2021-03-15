@@ -1,10 +1,11 @@
 const random = (min, max) => {
   return Math.floor(Math.random() * (max + 1 - min)) + min;
 };
+const axios = require("axios").default;
 export default {
   namespaced: true,
   state: {
-    locaciones:[],
+    locations:[],
     currentGold: 0,
     farmLevel: 1,
     caveLevel: 1,
@@ -29,6 +30,9 @@ export default {
     pepe: ''
   },
   mutations: {
+    SET_LOCATIONS(state, locations) {
+      state.locations = locations;
+    },
     SET_INCREMENT(state, payload) {
       if (Math.random() < 0.5) {
         state.currentGold = state.currentGold + payload;
@@ -67,6 +71,11 @@ export default {
     }
   },
   actions: {
+    getLocations({ commit }) {
+      axios.get("https://my-json-server.typicode.com/icaeth/vue-actividades-v1/locaciones").then(response => {
+        commit("SET_LOCATIONS", response.data);
+      });
+    },
     farmClick({ state, commit }, payload) {
       if (state.currentGold >= 20) {
         commit("SET_INCREMENT", random(payload.min, payload.max));
@@ -96,6 +105,9 @@ export default {
         commit("SET_UPGRADE")
       }
     },
+    setScore({state, commit}){
+      axios.post("https://my-json-server.typicode.com/icaeth/vue-actividades-v1/scores", {pepe:'globos', score: 100})
+    }
   },
   getters: {
     
