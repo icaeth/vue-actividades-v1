@@ -5,7 +5,9 @@
         <h1>{{ title }}</h1>
       </div>
       <div class="earning">
-        <p>(earns/takes {{ earningMin }}-{{ earningMax }} golds)</p>
+        <p class="earnings">
+          earn/take {{ earningMin }}-{{ earningMax }} golds
+        </p>
       </div>
       <!-- <ProgressBar /> -->
       <button
@@ -53,8 +55,8 @@ export default {
       default: 0
     },
     upgradeCost: {
-      type: Number,
-      default: 100
+      type: [String, Number],      
+      default: 'max'
     },
     currentGold:{
       type: Number,

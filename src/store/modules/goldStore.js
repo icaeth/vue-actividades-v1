@@ -5,7 +5,7 @@ const axios = require("axios").default;
 export default {
   namespaced: true,
   state: {
-    locations:[],
+    locations: [],
     currentGold: 0,
     farmLevel: 1,
     caveLevel: 1,
@@ -26,8 +26,8 @@ export default {
     caveUpgrade: 25,
     houseUpgrade: 25,
     casinoUpgrade: 150,
-    casinoAnimation: '',
-    pepe: ''
+    casinoAnimation: "",
+    pepe: ""
   },
   mutations: {
     SET_LOCATIONS(state, locations) {
@@ -65,16 +65,45 @@ export default {
       state.cavePressed = false;
       state.housePressed = false;
     },
-    SET_UPGRADE(state) {
-      state.currentGold = state.currentGold - state.farmUpgrade
-      state.farmUpgrade = 100
+    SET_UPGRADE(state) {      
+      state.currentGold = state.currentGold - state.farmUpgrade;
+      state.farmUpgrade = Object.values(state.locations[0].costUpgrade)[state.farmLevel];
+      state.farmLevel++
+      state.farmMax = Object.values(state.locations[0].goldEarn)[state.farmLevel-1];
+      state.farmMin = Object.values(state.locations[0].goldLost)[state.farmLevel-1];
+    },
+    SET_UPGRADE_2(state) {      
+      state.currentGold = state.currentGold - state.caveUpgrade;
+      state.caveUpgrade = Object.values(state.locations[1].costUpgrade)[state.caveLevel];
+      state.caveLevel++
+      state.caveMax = Object.values(state.locations[1].goldEarn)[state.caveLevel-1];
+      state.caveMin = Object.values(state.locations[1].goldLost)[state.caveLevel-1];
+    },
+    SET_UPGRADE_3(state) {      
+      state.currentGold = state.currentGold - state.houseUpgrade;
+      state.houseUpgrade = Object.values(state.locations[2].costUpgrade)[state.houseLevel];
+      state.houseLevel++
+      state.houseMax = Object.values(state.locations[2].goldEarn)[state.houseLevel-1];
+      state.houseMin = Object.values(state.locations[2].goldLost)[state.houseLevel-1];
+    },
+    SET_UPGRADE_4(state) {      
+      state.currentGold = state.currentGold - state.casinoUpgrade;
+      state.casinoUpgrade = Object.values(state.locations[3].costUpgrade)[state.casinoLevel];
+      state.casinoLevel++
+      state.casinoMax = Object.values(state.locations[3].goldEarn)[state.casinoLevel-1];
+      state.casinoMin = Object.values(state.locations[3].goldLost)[state.casinoLevel-1];
     }
+
   },
   actions: {
     getLocations({ commit }) {
-      axios.get("https://my-json-server.typicode.com/icaeth/vue-actividades-v1/locaciones").then(response => {
-        commit("SET_LOCATIONS", response.data);
-      });
+      axios
+        .get(
+          "https://my-json-server.typicode.com/icaeth/vue-actividades-v1/locaciones"
+        )
+        .then(response => {
+          commit("SET_LOCATIONS", response.data);
+        });
     },
     farmClick({ state, commit }, payload) {
       if (state.currentGold >= 20) {
@@ -100,16 +129,29 @@ export default {
       }
     },
     farmUpgrade({ state, commit }) {
-
       if (state.currentGold >= state.farmUpgrade) {
-        commit("SET_UPGRADE")
+        commit("SET_UPGRADE");
       }
     },
-    setScore({state, commit}){
-      axios.post("https://my-json-server.typicode.com/icaeth/vue-actividades-v1/scores", {"pepe":'globos', "score": 100})
-    }
+    caveUpgrade({ state, commit }) {
+      if (state.currentGold >= state.caveUpgrade) {
+        commit("SET_UPGRADE_2");
+      }
+    },
+    houseUpgrade({ state, commit }) {
+      if (state.currentGold >= state.houseUpgrade) {
+        commit("SET_UPGRADE_3");
+      }
+    },
+    casinoUpgrade({ state, commit }) {
+      if (state.currentGold >= state.casinoUpgrade) {
+        commit("SET_UPGRADE_4");
+      }
+    },
+    setScore({ state, commit }, payload) {
+      axios.post("https://168.119.171.187:4400/scores", payload);
+    },
+    getScore({ state, commit }) {}
   },
-  getters: {
-    
-  }
+  getters: {}
 };

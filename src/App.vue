@@ -26,6 +26,9 @@
         <router-link to="/buscadorGold">
           Buscador Gold
         </router-link>
+        <router-link to="/trabajoFinal">
+          Trabajo Final
+        </router-link>
       </p>
       <router-view />
     </div>
@@ -35,9 +38,8 @@
 <script></script>
 
 <style lang="scss">
-* {
-  padding: 0.2rem;
-  margin: 0;
-  box-sizing: border-box;
+a{
+  padding: 0.5rem;
+  font-size: 1.5rem;
 }
 </style>

@@ -100,8 +100,5 @@
         "level4": 1000
       }
     }
-  ],
-  "users": [
-    {"pepe": "gato", "score": 50}
   ]
 }

@@ -50,6 +50,12 @@ const routes = [
     name: "Mutaciones",
     component: () =>
       import(/* webpackChunkName: "pokevuex" */ "../views/Mutaciones.vue")
+  },
+  {
+    path: "/trabajoFinal",
+    name: "Trabajo Final",
+    component: () =>
+      import(/* webpackChunkName: "pokevuex" */ "../views/TrabajoFinal.vue")
   }
 ];
 

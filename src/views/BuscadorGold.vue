@@ -2,8 +2,12 @@
   <div class="gentle-flex">
     <div class="container">
       <h1>Buscador de Oro</h1>
-
+      <Countdown
+        ref="countdown"
+        @elFinal="elFinal"
+      />
       <h4>Tú Oro: {{ currentGold }}</h4>
+      
 
       <div class="card_container">
         <Card
@@ -22,6 +26,7 @@
           :upgrade-cost="caveUpgrade"
           :current-gold="currentGold"
           @click="handleClick('Cave')"
+          @upgrade="handleUpgrade('Cave')"
         />
         <Card
           title="House"
@@ -30,6 +35,7 @@
           :upgrade-cost="houseUpgrade"
           :current-gold="currentGold"
           @click="handleClick('House')"
+          @upgrade="handleUpgrade('House')"
         />
         <Card
           title="Casino"
@@ -38,14 +44,37 @@
           :upgrade-cost="casinoUpgrade"
           :current-gold="currentGold"
           @click="handleClick('Casino')"
+          @upgrade="handleUpgrade('Casino')"
         />
       </div>
-
+      <div class="insertName">
+        <label for="nickName">Elige un nick: </label>
+        <input
+          id="nickName"
+          v-model="nickName"
+          type="text"          
+        >
+        <span> y presiona: </span>
+        <button @click="setPlayerScore()">
+          Start
+        </button>
+      </div>
       <div class="goldLog">
-        <p>
-          <!-- {{ action }} {{ amount }} golds from the {{ location }} {{ status }}
-        {{ timestamp }} -->
-        </p>
+        <h2 style="text-align: center">
+          Top Players
+        </h2>
+        <div class="titles">
+          <span class="span-left"><strong> Player </strong></span>             
+          <span class="span-right"><strong> Score </strong></span>
+        </div>
+        <div
+          v-for="player in tables"
+          :key="player.index"
+          class="players titles"
+        >
+          <span class="span-left">{{ player.nick }}</span>             
+          <span class="span-right">{{ player.score }}</span>             
+        </div>
       </div>
     </div>
   </div>
@@ -57,15 +86,27 @@ import { mapActions } from "vuex";
 import { mapMutations } from "vuex";
 import { mapGetters } from "vuex";
 import Card from "../components/Card";
+import Countdown from "../components/Countdown";
+const axios = require("axios").default;
 
 export default {
   components: {
-    Card
+    Card,
+    Countdown
   },
   data() {
-    return {};
+    return {
+      players: [],
+      nickName: ''
+    };
   },  
   computed: {
+    tables() {
+        let table = this.players
+        return table.sort(function(a,b){
+          return b.score - a.score
+        })
+    },
     ...mapState("goldStore", [
       "currentGold",
       "farmMin",
@@ -81,13 +122,26 @@ export default {
       "houseUpgrade",
       "casinoUpgrade"
     ]),
-    ...mapGetters([])
+    ...mapGetters([]),
   },
   mounted(){
-    this.$store.dispatch("goldStore/getLocations");
-    this.$store.dispatch("goldStore/setScore");
-  },
-  methods: {
+    this.$store.dispatch("goldStore/getLocations");      
+    },
+  created(){
+    let r = []
+  axios.get('https://168.119.171.187:4400/scores')      
+  .then(function (response) {    
+    r = response.data;    
+  })
+  .then(() => {    
+    this.players = r    
+  })
+  .catch(function (error) {
+    // handle error
+    console.log(error);
+  })
+  },  
+  methods: { 
     //also supports payload `this.nameOfAction(amount)`
     ...mapActions([
       "goldStore",
@@ -127,31 +181,31 @@ export default {
     handleUpgrade(value) {
       switch (value) {
         case "Farm":
-          this.$store.dispatch("goldStore/farmUpgrade", {            
-            msg: 'hola'
+          this.$store.dispatch("goldStore/farmUpgrade", {
           });
           break;
         case "Cave":
-          this.$store.dispatch("goldStore/caveClick", {
-            min: this.caveMin,
-            max: this.caveMax
+          this.$store.dispatch("goldStore/caveUpgrade", {            
           });
           break;
         case "House":
-          this.$store.dispatch("goldStore/houseClick", {
-            min: this.houseMin,
-            max: this.houseMax
+          this.$store.dispatch("goldStore/houseUpgrade", {            
           });
           break;
         case "Casino":
-          this.$store.dispatch("goldStore/casinoClick", {
-            min: this.casinoMin,
-            max: this.casinoMax
+          this.$store.dispatch("goldStore/casinoUpgrade", {            
           });
           break;
         default:
           break;
       }
+    },
+    setPlayerScore(){      
+      this.$refs.countdown.countdownF()
+      },
+    elFinal(){
+      let r = {"nick": this.nickName, "score": this.currentGold}
+      this.$store.dispatch("goldStore/setScore", r);
     }
   },      
 };
@@ -161,7 +215,13 @@ export default {
 .container {
   max-width: 1000px;
 }
-
+.insertName{
+  display: flex;
+  margin-top: 4rem;  
+  align-items: center;
+  justify-content: center;
+  gap: 1ch;
+}
 .card_container {
   display: flex;
   width: 100vw;
@@ -179,5 +239,18 @@ export default {
   align-items: center;
   justify-content: center;
   gap: 1ch;
+}
+.span-left {
+margin-left: 3rem;
+}
+.span-right{
+margin-right: 3rem;
+}
+.titles{
+  display: flex;
+  justify-content: space-between;
+}
+h4{
+  margin-left: 1ch;
 }
 </style>
