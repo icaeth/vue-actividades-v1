@@ -13,7 +13,7 @@
         :fields="fields"
         :current-page="currentPage"
         :per-page="perPage"
-        :filter="selected"
+        :filter="filterRegExp"
         :filter-included-fields="filterOn"        
         :sort-by.sync="sortBy"
         :sort-desc.sync="sortDesc"
@@ -180,6 +180,16 @@ export default {
           return { text: f.label, value: f.key };
         });
     },
+    filterRegExp(){
+      if(this.selected == null){
+        let filterRegExp = this.selected
+        return filterRegExp
+      }else{
+        let filterRegExp = new RegExp(`^(${this.selected})$`)
+        return filterRegExp
+      }
+      return filterRegExp
+    }
   }, 
   methods: {
     ...mapMutations('tfinalStore',['DEL_ITEMS', 'ADD_ITEMS','UPDATE_ITEMS']),
