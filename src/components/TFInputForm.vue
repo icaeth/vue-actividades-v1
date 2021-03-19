@@ -23,7 +23,32 @@
         
         prepend="TAMAÑO"
       >
-        <b-form-input v-model="inputForm.size" />
+        <b-form-select
+          v-model="inputForm.size"
+          value-field="hola" 
+        >
+          <b-form-select-option value="XS">
+            XS
+          </b-form-select-option>
+          <b-form-select-option value="S">
+            S
+          </b-form-select-option>
+          <b-form-select-option value="M">
+            M
+          </b-form-select-option>
+          <b-form-select-option value="L">
+            L
+          </b-form-select-option>
+          <b-form-select-option value="XL">
+            XL
+          </b-form-select-option>
+          <b-form-select-option value="2XL">
+            2XL
+          </b-form-select-option>
+          <b-form-select-option value="3XL">
+            3XL
+          </b-form-select-option>
+        </b-form-select>
       </b-input-group>
 
       <b-input-group
@@ -47,12 +72,12 @@ export default {
   },
   },  
   data() {
-    return {     
-      inputForm: this.form
+    return {          
+      inputForm: this.form,      
     }
   },
-  methods: {
-      
+  computed: {
+    
     },
 };
 </script>

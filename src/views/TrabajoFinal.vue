@@ -5,6 +5,7 @@
     </div>
     <TFInputForm ref="inputForm" />
     <TFInputButton @tFInputButtonEmit="tFInputButtonEmit" />
+    
 
     <b-container class="mt-5 pt-5">
       <b-table
@@ -12,8 +13,8 @@
         :fields="fields"
         :current-page="currentPage"
         :per-page="perPage"
-        :filter="filter"
-        :filter-included-fields="filterOn"
+        :filter="selected"
+        :filter-included-fields="filterOn"        
         :sort-by.sync="sortBy"
         :sort-desc.sync="sortDesc"
         :sort-direction="sortDirection"
@@ -61,7 +62,7 @@
       <b-pagination
         ref="pagination"
         v-model="currentPage"
-        :total-rows="entries - 1"
+        :total-rows="totalRows"
         :per-page="perPage"
         align="fill"
         size="md"
@@ -83,6 +84,19 @@
         />
       </b-modal>
     </b-container>
+
+    <div class="container mt-5">
+      <h4>Filtra por tamaño</h4>      
+      <b-form-select
+        v-model="selected"
+        :options="options"
+        size="md"
+        class="mt-3"
+      />
+      <div class="mt-3">
+        Selected: <strong>{{ selected }}</strong>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -95,7 +109,18 @@ import { mapMutations } from 'vuex';
 export default {
   components: { TFInputForm, TFInputButton },
   data() {
-    return {                        
+    return {
+      selected: null,
+        options: [
+          { value: null, text: 'Sin filtro activo' },
+          { value: 'XS', text: 'El tamaño más pequeño' },
+          { value: 'S', text: 'Pequeño, pero no tanto' },
+          { value: 'M', text: 'Tamaño Mediano' },
+          { value: 'L', text: 'Tamaño Grande' },
+          { value: 'XL', text: 'El Magnum' },
+          { value: '2XL', text: 'Un Onyx de Altura' },
+          { value: '3XL', text: 'El mísmisimo Everest' }
+        ],                        
       inputForm: [],      
       fields: [
         {
@@ -128,7 +153,7 @@ export default {
         },
         { key: "actions", label: "Actions" },
       ],
-      totalRows: 1,
+      totalRows: 30,
       currentPage: 1,
       perPage: 10,
       pageOptions: [5, 10, 15, { value: 100, text: "Show a lot" }],
@@ -136,7 +161,7 @@ export default {
       sortDesc: false,
       sortDirection: "asc",
       filter: null,
-      filterOn: [],
+      filterOn: ['size'],
       infoModal: {
         id: "Edit-ME",
         title: "",
@@ -145,7 +170,7 @@ export default {
     };
   },
   computed: {
-    ...mapState('tfinalStore',['items', 'entries']),
+    ...mapState('tfinalStore',['items', 'entries', 'rowsNumber']),
   
     sortOptions() {
       // Create an options list from our fields
@@ -155,12 +180,7 @@ export default {
           return { text: f.label, value: f.key };
         });
     },
-  },
-  
-  mounted() {
-    // Set the initial number of items
-    const reload= this.totalRows = this.items.length;    
-  },
+  }, 
   methods: {
     ...mapMutations('tfinalStore',['DEL_ITEMS', 'ADD_ITEMS','UPDATE_ITEMS']),
     info(item, index, button) {
@@ -169,17 +189,17 @@ export default {
       this.$root.$emit("bv::show::modal", this.infoModal.id, button);
     },
     updateData() {
-      this.UPDATE_ITEMS(this.$refs.inputFormModal.inputForm);
-      console.log(this.$refs.inputFormModal.inputForm);
+      this.UPDATE_ITEMS(this.$refs.inputFormModal.inputForm);      
     },
     onFiltered(filteredItems) {
       // Trigger pagination to update the number of buttons/pages due to filtering
       this.totalRows = filteredItems.length;
       this.currentPage = 1;
     },
-    tFInputButtonEmit(){
-      this.ADD_ITEMS(this.$refs.inputForm.inputForm)
-      console.log(this.$refs.inputForm.inputForm)
+    tFInputButtonEmit(){           
+      this.ADD_ITEMS(this.$refs.inputForm.inputForm);
+      this.$refs.inputForm.inputForm = {}
+      this.totalRows = this.items.length
     }    
   },  
 };

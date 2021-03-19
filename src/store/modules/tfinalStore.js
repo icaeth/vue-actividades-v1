@@ -1,3 +1,5 @@
+import { createLogger } from "vuex";
+
 export default {
   namespaced: true,
   state: {
@@ -35,6 +37,7 @@ export default {
 {"id":30,"name":"Cookley","color":"Orange","size":"M","material":"Devil In The Bush"}
 ],
     entries: 31,
+    rowsNumber: 30
 
   },
   mutations: {
@@ -42,12 +45,14 @@ export default {
       state.items = state.items.filter(function(el) {return el.id != id}) 
     },
     UPDATE_ITEMS(state, updateData) {
-      console.log("updating", updateData);
+      
     },
-    ADD_ITEMS(state, addData) {      
-      addData.id = state.entries
-      state.items.push(addData)
+    ADD_ITEMS(state, payload) {
+      console.log('primer clog', payload)   
+      payload.id = state.entries      
+      state.items.push(payload)      
       state.entries++
+      state.rowsNumber++
     }
   },
   actions: {},
