@@ -26,8 +26,7 @@ export default {
     caveUpgrade: 25,
     houseUpgrade: 25,
     casinoUpgrade: 150,
-    casinoAnimation: "",
-    pepe: ""
+    casinoAnimation: ""    
   },
   mutations: {
     SET_LOCATIONS(state, locations) {

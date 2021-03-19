@@ -13,9 +13,15 @@
 
 <script>
 export default {
+  props: {
+    reload: {
+      type: Number,
+      default: 1 
+    },
+  },
   data() {
     return {
-      percentage: 0
+      percentage: 0,      
     };
   },
   computed: {
@@ -25,7 +31,7 @@ export default {
   },
   created() {
     var intval = setInterval(() => {
-      if (this.percentage < 100) this.percentage += 0.1;
+      if (this.percentage < 100) this.percentage += this.reload;
       else clearInterval(intval);
     }, 10);
   }
@@ -37,6 +43,7 @@ export default {
   text-align: right;
   font-size: 8rem;
   color: #555;
+  padding: 0.5rem;
 }
 
 .loading-bar {
@@ -69,13 +76,13 @@ export default {
       transparent 75%,
       transparent
     );
-    animation: animate-stripes 3s linear infinite;
+    animation: animate-stripes 20s linear infinite;
 
     &::after {
       content: "COOLDOWN";
       position: absolute;
       font-size: 1rem;
-      top: 20%;
+      top: 12%;
       left: -10%;
       width: 120px;
       height: 30px;

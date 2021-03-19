@@ -9,7 +9,7 @@
           earn/take {{ earningMin }}-{{ earningMax }} golds
         </p>
       </div>
-      <!-- <ProgressBar /> -->
+      <slot />
       <button
         class="button"
         @click="click"
@@ -33,13 +33,12 @@
 </template>
 
 <script>
-/* import ProgressBar from "./ProgressBar"; */
+
 
 
 export default {
   components: {
-    /* ProgressBar */
-    
+        
   },
   props: {
     title: {
@@ -61,7 +60,8 @@ export default {
     currentGold:{
       type: Number,
       default: 0
-    }
+    },
+    
   },
   computed: {
     goldPercentage() {

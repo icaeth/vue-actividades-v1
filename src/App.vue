@@ -29,6 +29,12 @@
         <router-link to="/trabajoFinal">
           Trabajo Final
         </router-link>
+        <router-link to="/relojvue">
+          Reloj Vue
+        </router-link>
+        <router-link to="/prueba">
+          Prueba
+        </router-link>
       </p>
       <router-view />
     </div>

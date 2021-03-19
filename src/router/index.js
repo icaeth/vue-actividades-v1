@@ -56,7 +56,14 @@ const routes = [
     name: "Trabajo Final",
     component: () =>
       import(/* webpackChunkName: "pokevuex" */ "../views/TrabajoFinal.vue")
+  },
+  {
+    path: "/prueba",
+    name: "Prueba",
+    component: () =>
+      import(/* webpackChunkName: "pokevuex" */ "../components/Prueba.vue")
   }
+  
 ];
 
 const router = new VueRouter({

@@ -15,28 +15,35 @@
           :earning-min="farmMin"
           :earning-max="farmMax"
           :upgrade-cost="farmUpgrade"
-          :current-gold="currentGold"
+          :current-gold="currentGold"          
           @click="handleClick('Farm')"
           @upgrade="handleUpgrade('Farm')"
-        />
+        >
+          <ProgressBar :reload="0.1" />
+        </Card>
         <Card
+          
           title="Cave"
           :earning-min="caveMin"
           :earning-max="caveMax"
-          :upgrade-cost="caveUpgrade"
+          :upgrade-cost="caveUpgrade"          
           :current-gold="currentGold"
           @click="handleClick('Cave')"
           @upgrade="handleUpgrade('Cave')"
-        />
+        >
+          <ProgressBar :reload="0.5" />
+        </Card>        
         <Card
           title="House"
           :earning-min="houseMin"
           :earning-max="houseMax"
           :upgrade-cost="houseUpgrade"
-          :current-gold="currentGold"
+          :current-gold="currentGold"          
           @click="handleClick('House')"
           @upgrade="handleUpgrade('House')"
-        />
+        >
+          <ProgressBar />
+        </Card>
         <Card
           title="Casino"
           :earning-min="casinoMin"
@@ -45,7 +52,9 @@
           :current-gold="currentGold"
           @click="handleClick('Casino')"
           @upgrade="handleUpgrade('Casino')"
-        />
+        >
+          <ProgressBar />
+        </Card>
       </div>
       <div class="insertName">
         <label for="nickName">Elige un nick: </label>
@@ -87,12 +96,14 @@ import { mapMutations } from "vuex";
 import { mapGetters } from "vuex";
 import Card from "../components/Card";
 import Countdown from "../components/Countdown";
+import ProgressBar from "../components/ProgressBar";
 const axios = require("axios").default;
 
 export default {
   components: {
     Card,
-    Countdown
+    Countdown,
+    ProgressBar
   },
   data() {
     return {
