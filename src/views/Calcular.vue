@@ -83,18 +83,16 @@ export default {
           this.resultado = this.a - this.b;
           this.igual = "=";
           break;
-        case "*":
-          console.log(this.a);
+        case "*":          
           this.resultado = this.a * this.b;
           this.igual = "=";
           break;
-        case "/":
-          console.log(this.a);
+        case "/":          
           this.resultado = this.a / this.b;
           this.igual = "=";
           break;
         default:
-          console.log("default");
+          
       }
     },
     borrar() {

@@ -187,8 +187,7 @@ export default {
       }else{
         let filterRegExp = new RegExp(`^(${this.selected})$`)
         return filterRegExp
-      }
-      return filterRegExp
+      }      
     }
   }, 
   methods: {

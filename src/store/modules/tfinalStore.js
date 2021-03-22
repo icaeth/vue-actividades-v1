@@ -1,5 +1,3 @@
-import { createLogger } from "vuex";
-
 export default {
   namespaced: true,
   state: {
