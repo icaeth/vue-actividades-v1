@@ -11,4 +11,4 @@ jobs:
       with:
         username: 'icaeth'
         reponame: 'vue-actividades-v1'
-        token: ${{ secrets.GITHUB_TOKEN }} # Leave this line unchanged
+        token: ${{ secrets.GITHUB_TOKEN }} # Leave this line unchanged r
