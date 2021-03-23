@@ -32,7 +32,7 @@ const wrapper = shallowMount(Mutaciones, {store, localVue});
 /// Evalúa que el valor de nombre esté vacio
 expect(wrapper.vm.nombre).toBe("");
 /// Evalúa que el valor de apellido esté vacio
-expect(wrapper.vm.nombre).toBe("");
+expect(wrapper.vm.apellido).toBe("");
 
 })
 

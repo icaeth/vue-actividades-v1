@@ -12,32 +12,31 @@ expect(wrapper.vm.b).toBe(null);
 expect(wrapper.vm.operator).toBe(null);
 expect(wrapper.vm.resultado).toBe(null);
 expect(wrapper.vm.igual).toBe(null);
-
 });
 
 //Asignar valores y verificar
 
-it('verificar asignar y verificar', () => {
-
-const wrapper = shallowMount(Calcular);  
-wrapper.setData({a : 1});
-expect(wrapper.vm.a).toBe(1);
-})
+  it('verificar asignar y verificar', () => {
+    
+  const wrapper = shallowMount(Calcular);  
+  wrapper.setData({a : 1});
+  expect(wrapper.vm.a).toBe(1);
+  })
 
 //testear Borrar valores y verificar
 
-it('verificar metodo borrar', async () => {
+  it('verificar metodo borrar', async () => {
 
   const wrapper = shallowMount(Calcular);
   const button = wrapper.find('.boton-rojo')  
   wrapper.setData({a : 3}, {b : 1}, {operator: "+"}, {resultado: 3});
-
   expect(wrapper.vm.a).toBe(3);
-
   await button.trigger('click');
-
   expect(wrapper.vm.a).toBe(null)
-
+  expect(wrapper.vm.b).toBe(null)
+  expect(wrapper.vm.operator).toBe(null)
+  expect(wrapper.vm.resultado).toBe(null)
+  expect(wrapper.vm.igual).toBe(null)
   })
 
   it('verificar operación suma', async () => {
@@ -91,8 +90,6 @@ it('verificar metodo borrar', async () => {
     await button.trigger('click');  
     expect(wrapper.vm.resultado).toBe(2);  
     })
-
-
 })
 
 

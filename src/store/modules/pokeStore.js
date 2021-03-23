@@ -2,7 +2,7 @@ export default {
   namespaced: true,
   state: {
     pokemon: "pikachu",
-    number: 1,
+    number: 0,
     type: "hierba",
     description: "pokemon electrico poderoso"
   },
