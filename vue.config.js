@@ -1,5 +1,5 @@
 module.exports = {
-  publicPath: '/vue-actividades-v1/',
+  publicPath: '/',
   css: {
     loaderOptions: {
       scss: {
