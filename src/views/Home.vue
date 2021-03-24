@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div class="padre">      
-      <h1>Soy el componente Padre</h1>
+      <h1>Mira Papá sin manos</h1>
       <label for="">Soy un input en el componente padre: </label>
       <input
         v-model="value"
