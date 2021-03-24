@@ -1,7 +1,7 @@
 <template>
   <div class="gentle-flex">
     <div class="container">
-      <h1>Buscador de Oro</h1>
+      <h1>Buscador de Oro Plus</h1>
       <Countdown
         ref="countdown"
         @elFinal="elFinal"
