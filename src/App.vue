@@ -38,6 +38,9 @@
         <router-link to="/firebase">
           Firebase
         </router-link>
+        <router-link to="/BootstrapVue">
+          BootstrapVue
+        </router-link>
       </p>
       <router-view />
     </div>
