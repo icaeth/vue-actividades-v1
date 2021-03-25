@@ -62,6 +62,12 @@ const routes = [
     name: "Prueba",
     component: () =>
       import(/* webpackChunkName: "pokevuex" */ "../components/Prueba.vue")
+  },
+  {
+    path: "/firebase",
+    name: "Firebase",
+    component: () =>
+      import(/* webpackChunkName: "pokevuex" */ "../views/Crud.vue")
   }
   
 ];

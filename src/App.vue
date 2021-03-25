@@ -35,6 +35,9 @@
         <router-link to="/prueba">
           Prueba
         </router-link>
+        <router-link to="/firebase">
+          Firebase
+        </router-link>
       </p>
       <router-view />
     </div>
