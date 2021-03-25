@@ -58,7 +58,8 @@ export default {
     }
   },
   firestore: {
-    users: dbFirestore.collection("users").orderBy("name", "asc")
+    users: dbFirestore.collection("users")
+.where("name", "==", "Miranda")
   }
 };
 </script>
