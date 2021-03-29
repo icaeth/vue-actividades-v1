@@ -31,7 +31,7 @@ const routes = [
     path: "/filtros",
     name: "Filtros",
     component: () =>
-      import(/* webpackChunkName: "vuex" */ "../views/Filtros.vue")
+      import(/* webpackChunkName: "filtros" */ "../views/Filtros.vue")
   },
   {
     path: "/pokevuex",
@@ -43,37 +43,43 @@ const routes = [
     path: "/buscadorGold",
     name: "BuscadorGold",
     component: () =>
-      import(/* webpackChunkName: "pokevuex" */ "../views/BuscadorGold.vue")
+      import(/* webpackChunkName: "buscadorgold" */ "../views/BuscadorGold.vue")
   },
   {
     path: "/mutaciones",
     name: "Mutaciones",
     component: () =>
-      import(/* webpackChunkName: "pokevuex" */ "../views/Mutaciones.vue")
+      import(/* webpackChunkName: "mutaciones" */ "../views/Mutaciones.vue")
   },
   {
     path: "/trabajoFinal",
     name: "Trabajo Final",
     component: () =>
-      import(/* webpackChunkName: "pokevuex" */ "../views/TrabajoFinal.vue")
+      import(/* webpackChunkName: "trabajoFinal" */ "../views/TrabajoFinal.vue")
   },
   {
     path: "/prueba",
     name: "Prueba",
     component: () =>
-      import(/* webpackChunkName: "pokevuex" */ "../components/Prueba.vue")
+      import(/* webpackChunkName: "prueba" */ "../components/Prueba.vue")
   },
   {
     path: "/firebase",
     name: "Firebase",
     component: () =>
-      import(/* webpackChunkName: "pokevuex" */ "../views/Crud.vue")
+      import(/* webpackChunkName: "crud" */ "../views/Crud.vue")
   },
   {
     path: "/BootstrapVue",
     name: "BootstrapVue",
     component: () =>
-      import(/* webpackChunkName: "pokevuex" */ "../views/BootstrapVue.vue")
+      import(/* webpackChunkName: "boostrapvue" */ "../views/BootstrapVue.vue")
+  },
+  {
+    path: "/buscaminas",
+    name: "buscaminas",
+    component: () =>
+      import(/* webpackChunkName: "buscaminas" */ "../views/BuscaMinas.vue")
   }
   
 ];

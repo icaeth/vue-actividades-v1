@@ -41,6 +41,9 @@
         <router-link to="/BootstrapVue">
           BootstrapVue
         </router-link>
+        <router-link to="/buscaminas">
+          Buscaminas
+        </router-link>
       </p>
       <router-view />
     </div>
