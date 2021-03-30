@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import BuscaMinas from '@/views/Buscaminas.vue'
+import BuscaMinas from '@/views/BuscaMinas.vue'
 
 describe('Valores de Tablero', () => {
   const wrapper = mount(BuscaMinas);
